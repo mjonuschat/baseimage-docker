@@ -1,6 +1,7 @@
 # A minimal Ubuntu base image modified for Docker-friendliness
 
-[![](https://badge.imagelayers.io/phusion/baseimage:0.9.17.svg)](https://imagelayers.io/?images=phusion/baseimage:latest 'Get your own badge on imagelayers.io')
+yabawock/baseimage is a docker image based off of Phusion's baseimage-docker, but has been modified to run on Ubuntu 16.04 and
+removes features deemed unnecessary for a modern baseimage.
 
 Baseimage-docker is a special [Docker](https://www.docker.com) image that is configured for correct use within Docker containers. It is Ubuntu, plus:
 
@@ -31,12 +32,8 @@ You can configure the stock `ubuntu` image yourself from your Dockerfile, so why
 -----------------------------------------
 
 **Related resources**:
-  [Website](http://phusion.github.io/baseimage-docker/) |
-  [Github](https://github.com/phusion/baseimage-docker) |
-  [Docker registry](https://index.docker.io/u/phusion/baseimage/) |
-  [Discussion forum](https://groups.google.com/d/forum/passenger-docker) |
-  [Twitter](https://twitter.com/phusion_nl) |
-  [Blog](http://blog.phusion.nl/)
+  [Github](https://github.com/yabawock/baseimage-docker) |
+  [Docker registry](https://index.docker.io/u/yabawock/baseimage/) |
 
 **Table of contents**
 
