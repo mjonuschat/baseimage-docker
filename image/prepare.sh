@@ -3,11 +3,6 @@ set -e
 source /bd_build/buildconfig
 set -x
 
-## Temporarily disable dpkg fsync to make building faster.
-if [[ ! -e /etc/dpkg/dpkg.cfg.d/docker-apt-speedup ]]; then
-	echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/docker-apt-speedup
-fi
-
 ## Prevent initramfs updates from trying to run grub and lilo.
 ## https://journal.paul.querna.org/articles/2013/10/15/docker-ubuntu-on-rackspace/
 ## http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=594189
@@ -15,7 +10,8 @@ export INITRD=no
 mkdir -p /etc/container_environment
 echo -n no > /etc/container_environment/INITRD
 
-## Enable Ubuntu Universe and Multiverse.
+## Enable Ubuntu Universe, Multiverse, and deb-src for main.
+sed -i 's/^#\s*\(deb.*main restricted\)$/\1/g' /etc/apt/sources.list
 sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
 sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list
 apt-get update
@@ -32,6 +28,9 @@ ln -sf /bin/true /sbin/initctl
 dpkg-divert --local --rename --add /usr/bin/ischroot
 ln -sf /bin/true /usr/bin/ischroot
 
+# apt-utils fix for Ubuntu 16.04
+$minimal_apt_get_install apt-utils
+
 ## Install HTTPS support for APT.
 $minimal_apt_get_install apt-transport-https ca-certificates
 
@@ -39,7 +38,7 @@ $minimal_apt_get_install apt-transport-https ca-certificates
 $minimal_apt_get_install software-properties-common
 
 ## Upgrade all packages.
-apt-get dist-upgrade -y --no-install-recommends
+apt-get dist-upgrade -y --no-install-recommends -o Dpkg::Options::="--force-confold"
 
 ## Fix locale.
 $minimal_apt_get_install language-pack-en
