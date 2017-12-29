@@ -1,3 +1,8 @@
+## 2.0.0 (release date: 2017-12-29)
+
+  * Use Alpine Linux base
+  * Use S6 instead of runit + custom init
+
 ## 1.0.1 (release date: 2017-05-11)
 
   * Import changes from upstream
