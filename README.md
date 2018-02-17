@@ -2,7 +2,7 @@
 
 yabawock/baseimage is a docker image based off of Phusion's baseimage-docker, but has been modified to run on Ubuntu 16.04 and removes features deemed unnecessary for a modern baseimage.
 
-_Baseimage-docker only consumes 6 MB RAM and is much more powerful than Busybox or Alpine. See why below._
+_Baseimage-docker only consumes 8.3 MB RAM and is much more powerful than Busybox or Alpine. See why below._
 
 Baseimage-docker is a special [Docker](https://www.docker.com) image that is configured for correct use within Docker containers. It is Ubuntu, plus:
 
@@ -85,7 +85,7 @@ You can configure the stock `ubuntu` image yourself from your Dockerfile, so why
 | `setuser` | A tool for running a command as another user. Easier to use than `su`, has a smaller attack vector than `sudo`, and unlike `chpst` this tool sets `$HOME` correctly. Available as `/sbin/setuser`. |
 | `install_clean` | A tool for installing `apt` packages that automatically cleans up after itself.  All arguments are passed to `apt-get -y install --no-install-recommends` and after installation the apt caches are cleared.  To include recommended packages, add `--install-recommends`. |
 
-Baseimage-docker is very lightweight: it only consumes 6 MB of memory.
+Baseimage-docker is very lightweight: it only consumes 8.3 MB of memory.
 
 <a name="docker_single_process"></a>
 ### Wait, I thought Docker is about running a single process in a container?
