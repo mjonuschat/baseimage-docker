@@ -187,7 +187,7 @@ In `Dockerfile`:
 
     RUN mkdir -p /etc/my_init.d
     COPY logtime.sh /etc/my_init.d/logtime.sh
-	  RUN chmod +x /etc/my_init.d/logtime.sh
+    RUN chmod +x /etc/my_init.d/logtime.sh
 
 <a name="environment_variables"></a>
 
