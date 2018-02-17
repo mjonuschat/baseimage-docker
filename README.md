@@ -294,7 +294,7 @@ If you are sure that your environment variables don't contain sensitive data, th
 <a name="logging"></a>
 ### System logging
 
-Baseimage-docker uses syslog-ng to provide a syslog facility to the container. Syslog-ng is not managed as an runit service (see below). Syslog messages are forwarded to the console via the service at /etc/service/syslog-forwarder.
+Baseimage-docker uses syslog-ng to provide a syslog facility to the container. Syslog-ng is not managed as an runit service (see below). Syslog messages are forwarded to the console.
 
 #### Log startup/shutdown sequence
 In order to ensure that all application log messages are captured by syslog-ng, syslog-ng is started separately before the runit supervisor process, and shutdown after runit exits. This uses the [startup script facility](#running_startup_scripts) provided by this image. This avoids a race condition which would exist if syslog-ng were managed as an runit service, where runit kills syslog-ng in parallel with the container's other services, causing log messages to be dropped during a graceful shutdown if syslog-ng exits while logs are still being produced by other services.
